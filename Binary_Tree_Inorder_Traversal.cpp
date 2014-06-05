@@ -23,3 +23,29 @@ public:
         return data;
     }
 };
+
+// none recursive solution for inorder
+class Solution_None_Recursive {
+public:
+    vector<int> inorderTraversal(TreeNode *root) {
+        vector<int> data;
+        stack<TreeNode*> miniStack;
+        TreeNode* node = root;
+        while(node || !miniStack.empty())
+        {
+            while(node)
+            {
+                miniStack.push(node);
+                node = node->left;
+            }
+            if(!miniStack.empty())
+            {
+                node = miniStack.top();
+                miniStack.pop();
+                data.push_back(node->val);
+                node = node->right;
+            }
+        }
+        return data;
+    }
+};
